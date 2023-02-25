@@ -7,6 +7,7 @@ import { ContainerComponent } from './container/container.component';
 import { NavComponent } from './nav/nav.component';
 import { HeaderComponent } from './header/header.component';
 import { NotificationComponent } from './notification/notification.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { NotificationComponent } from './notification/notification.component';
     NavComponent,
     HeaderComponent,
     NotificationComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
