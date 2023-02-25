@@ -37,3 +37,10 @@
     padding: 2px 10px;
     font-size: 12px;
 }
+
+.index-container {
+    padding: 0px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}

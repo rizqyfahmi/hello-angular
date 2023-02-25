@@ -1,6 +1,7 @@
 <!-- Structural directive always begin with asterisk symbol -->
-<div *ngFor="let item of products">
+<div *ngFor="let item of products; let i = index">
     <div class="product-container">
+        <div class="index-container">{{ i }}</div>
         <div class="image-container">
             <img [src]="item.image" alt="" style="max-width: 50px; max-width: 50px;">
         </div>
