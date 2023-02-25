@@ -1,5 +1,5 @@
 <div>
-    <app-search></app-search>
+    <app-search (onSearchTextChanged)="onSearchTextEntered($event)"></app-search>
     <app-filter
         [total]="getTotalCourses()"
         [free]="getTotalFreeCourses()"
@@ -10,7 +10,7 @@
 </div>
 <!-- We use ng-container because we can't use multple structural directive in the same html tag -->
 <ng-container *ngFor="let course of courses">
-    <div class="course-container" *ngIf="selectedFilter === 'All' || selectedFilter === course.type">
+    <div class="course-container" *ngIf="(selectedFilter === 'All' || selectedFilter === course.type) && (searchText === '' || course.name.toLowerCase().includes(searchText))">
         <div class="course-card">
             <div>
                 <img [src]="course.image" alt="" style="width: 220px; height: 140px;">

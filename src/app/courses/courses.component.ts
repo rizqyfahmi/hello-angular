@@ -71,4 +71,10 @@ export class CoursesComponent {
   onSelectedFilterChanged(data: string) {
     this.selectedFilter = data;
   }
+
+  searchText: string = ""
+
+  onSearchTextEntered(data: string) {
+    this.searchText = data;
+  }
 }
