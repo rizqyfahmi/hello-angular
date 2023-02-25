@@ -1,3 +1,4 @@
 <div class="container">
-    <app-demo></app-demo>
+    <app-customer-list #customer></app-customer-list>
+    <p *ngIf="customer.selectedCustomer!!">You have selected: {{ customer.selectedCustomer.name }}</p>
 </div>
