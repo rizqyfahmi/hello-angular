@@ -10,3 +10,6 @@ input[type="text"] {
     border: none;
 }
 
+.changeBackground {
+    background-color: #B4E4FF;
+}
