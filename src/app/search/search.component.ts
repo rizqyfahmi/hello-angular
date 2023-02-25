@@ -8,6 +8,6 @@ import { Component } from '@angular/core';
 export class SearchComponent {
   
   // Two way data binding allows us to set a property that always reflect for the value either from class component to template or vice versa without event binding
-  searchValue: string = "Hello World"
+  searchValue: string = ""
 
 }
