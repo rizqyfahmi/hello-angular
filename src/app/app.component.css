@@ -1,14 +1,18 @@
-.app-component {
-    text-align: center;
-    border: #bbb 2px solid;
-    padding-top: 40px;
-    padding-bottom: 40px;
-    margin-top:30px;
-    margin-left: 10px;
-    margin-right:10px;
+.container {
+    padding: 20px 30px;
+    background-color: #eee;
 }
 
-.component-container {
+.more-products {
     display: flex;
-    text-align: center;
+}
+
+.btn-more {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+    padding:10px 0px;
+    background-color: #4CAF50;
+    border: none;
 }
