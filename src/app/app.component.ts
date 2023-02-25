@@ -1,4 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { DemoComponent } from './demo/demo.component';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,8 @@ export class AppComponent {
   @ViewChild('dobInput') dateOfBirth!: ElementRef;
   // "ageInput" is a template reference variable
   @ViewChild('ageInput') age!: ElementRef;
+  // Custom component has its own way
+  @ViewChild(DemoComponent, { static: true }) demoComponent!: DemoComponent;
 
   onCalculateAge() {
     const value = this.dateOfBirth.nativeElement.value;
