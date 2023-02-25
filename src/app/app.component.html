@@ -1,4 +1,7 @@
-<div class="container">
-    <app-customer-list #customer></app-customer-list>
-    <p *ngIf="customer.selectedCustomer!!">You have selected: {{ customer.selectedCustomer.name }}</p>
+<div>
+    <label>DOB: </label>
+    <input type="date" #dobInput (blur)="onCalculateAge()" />
+
+    <label>Age: </label>
+    <input type="text" #ageInput />
 </div>

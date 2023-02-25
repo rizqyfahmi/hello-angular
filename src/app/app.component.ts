@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,6 +6,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Angular application';
-  message = 'Angular is a javascript framework for building client-side application.'
+  /*
+    ViewChild is a way to pass element reference from view template into its class
+  */
+  // "dobInput" is a template reference variable
+  @ViewChild('dobInput') dateOfBirth!: ElementRef;
+  // "ageInput" is a template reference variable
+  @ViewChild('ageInput') age!: ElementRef;
+
+  onCalculateAge() {
+    const value = this.dateOfBirth.nativeElement.value;
+    if (!value) return;
+
+    const birthYear = new Date(value).getFullYear()
+    const currentYear = new Date().getFullYear();
+
+    this.age.nativeElement.value = currentYear - birthYear;
+    
+  }
 }
