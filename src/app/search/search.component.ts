@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-search',
@@ -6,8 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent {
-  
-  // Two way data binding allows us to set a property that always reflect for the value either from class component to template or vice versa without event binding
-  searchValue: string = ""
+  searchText: string = "";
 
+  @Output()
+  onSearchTextChanged: EventEmitter<string> = new EventEmitter<string>()
+  
+  onInputChanged() {
+    this.onSearchTextChanged.emit(this.searchText);
+  }
 }
