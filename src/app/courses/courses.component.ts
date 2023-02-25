@@ -65,4 +65,10 @@ export class CoursesComponent {
   getTotalPremiumCourses() {
     return this.courses.filter((course) => course.type === "Premium").length;
   }
+
+  selectedFilter: string = "All"
+
+  onSelectedFilterChanged(data: string) {
+    this.selectedFilter = data;
+  }
 }
