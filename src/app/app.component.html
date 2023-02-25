@@ -1,4 +1,9 @@
-<div class="container">
-    <app-header></app-header>
-    <app-courses></app-courses>
+<div>
+    <label>DOB: </label>
+    <input type="date" #dobInput (blur)="onCalculateAge()" />
+
+    <label>Age: </label>
+    <input type="text" #ageInput />
 </div>
+<app-demo></app-demo>
+{{ demoComponent.sayHello() }}
