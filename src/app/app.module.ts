@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { ContainerComponent } from './container/container.component';
 import { NavComponent } from './nav/nav.component';
 import { HeaderComponent } from './header/header.component';
+import { NotificationComponent } from './notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { HeaderComponent } from './header/header.component';
     ContainerComponent,
     NavComponent,
     HeaderComponent,
+    NotificationComponent,
   ],
   imports: [
     BrowserModule,
