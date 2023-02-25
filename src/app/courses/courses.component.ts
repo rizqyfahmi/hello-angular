@@ -52,5 +52,17 @@ export class CoursesComponent {
       price: 115.50, ratings: 4.8, image: 'assets/courses/course-image-9.jpeg',
       description: 'In this course you will learn about reactive web development using HTML & CSS. This course will start teaching you from basics of HTML & CSS and as you progress, you will learn all the advance concepts.'
     }
-  ]
+  ];
+
+  getTotalCourses() {
+    return this.courses.length;
+  }
+
+  getTotalFreeCourses() {
+    return this.courses.filter((course) => course.type === "Free").length;
+  }
+
+  getTotalPremiumCourses() {
+    return this.courses.filter((course) => course.type === "Premium").length;
+  }
 }

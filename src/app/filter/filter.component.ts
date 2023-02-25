@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-filter',
@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./filter.component.css']
 })
 export class FilterComponent {
-  all: number = 10;
-  free: number = 4;
-  premium: number = 6;
+  @Input('total') all: number = 0; // "total" is an alias
+  @Input() free: number = 0;
+  @Input() premium: number = 0;
 }
