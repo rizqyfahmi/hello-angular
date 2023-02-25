@@ -8,7 +8,8 @@
         <div>
             <div class="name-container"><h6>{{ item.name }}</h6></div>
             <div class="details-container">
-                <div class="details">{{ item.available }}</div>
+                <!-- ngStyle is a attribute directive so that doesn't need to begin with asterisk symbol -->
+                <div class="details" [ngStyle]="{color: item.available === 'Available' ? 'green' : 'red'}">{{ item.available }}</div>
                 <div class="details"><b>Price: </b>{{ item.price }}</div>
                 <div class="details"><b>Color: </b>{{ item.color }}</div>
             </div>
