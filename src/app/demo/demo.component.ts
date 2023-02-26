@@ -1,11 +1,11 @@
-import { AfterContentInit, Component, DoCheck, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, Component, DoCheck, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-demo',
   templateUrl: './demo.component.html',
   styleUrls: ['./demo.component.css']
 })
-export class DemoComponent implements OnInit, OnChanges, DoCheck, AfterContentInit {
+export class DemoComponent implements OnInit, OnChanges, DoCheck, AfterContentInit, AfterContentChecked {
   @Input() value: string = "Initial Value";
 
   /**
@@ -47,6 +47,14 @@ export class DemoComponent implements OnInit, OnChanges, DoCheck, AfterContentIn
    */ 
   ngAfterContentInit(): void {
     console.log("- ngAfterContentInit called!");
+    console.log("  Value: ", this.value);
+  }
+
+  /**
+   * - ngAfterContentChecked gets called whenever projected content (ng-content) has completed checking
+   */ 
+  ngAfterContentChecked(): void {
+    console.log("- ngAfterContentChecked called!");
     console.log("  Value: ", this.value);
   }
 }
