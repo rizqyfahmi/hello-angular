@@ -1,11 +1,11 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, DoCheck, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-demo',
   templateUrl: './demo.component.html',
   styleUrls: ['./demo.component.css']
 })
-export class DemoComponent implements OnInit, OnChanges {
+export class DemoComponent implements OnInit, OnChanges, DoCheck {
   @Input() value: string = "Initial Value";
 
   /**
@@ -31,6 +31,14 @@ export class DemoComponent implements OnInit, OnChanges {
    */ 
   ngOnInit(): void {
     console.log("- ngOnInit called!");
+    console.log("  Value: ", this.value);
+  }
+
+  /**
+   * - ngDoCheck gets called when every event or change happens
+   */ 
+  ngDoCheck(): void {
+    console.log("- ngDoCheck called!");
     console.log("  Value: ", this.value);
   }
 }
