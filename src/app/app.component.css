@@ -1,18 +1,20 @@
 .container {
-    padding: 20px 30px;
+    margin: 20px 30px;
+    padding: 20px 20px;
     background-color: #eee;
+    text-align: center;
 }
 
-.more-products {
-    display: flex;
-}
-
-.btn-more {
-    display: block;
-    width: 100%;
-    height: auto;
-    margin-top: 10px;
-    padding:10px 0px;
-    background-color: #4CAF50;
+input[type=text] {
+    margin: 0px 10px;
+    width: 250px;
+    height: 24px;
     border: none;
+}
+
+button {
+    width: 100px;
+    height: 25px;
+    border: none;
+    background-color: #CACFD2;
 }
