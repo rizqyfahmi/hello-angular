@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'hello-angular';
+  title: string = 'hello-angular';
+  inputText: string = "";
+
+  onSubmit(inputElement: HTMLInputElement) {
+    this.inputText = inputElement.value;
+  }
 }
