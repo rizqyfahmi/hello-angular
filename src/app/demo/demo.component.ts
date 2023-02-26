@@ -1,11 +1,11 @@
-import { AfterContentChecked, AfterContentInit, AfterViewInit, Component, DoCheck, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, DoCheck, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-demo',
   templateUrl: './demo.component.html',
   styleUrls: ['./demo.component.css']
 })
-export class DemoComponent implements OnInit, OnChanges, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit {
+export class DemoComponent implements OnInit, OnChanges, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked {
   @Input() value: string = "Initial Value";
 
   /**
@@ -65,5 +65,13 @@ export class DemoComponent implements OnInit, OnChanges, DoCheck, AfterContentIn
   ngAfterViewInit(): void {
     console.log("- ngAfterViewInit called!");
     console.log("  Value: ", this.value);
+  }
+
+  /**
+   * - ngAfterViewChecked gets invoked after the default change detector has completed one change-check cycle for a component's view
+   */ 
+  ngAfterViewChecked(): void {
+    console.log("- ngAfterViewChecked called!");
+    console.log("  Value: ", this.value);    
   }
 }
