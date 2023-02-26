@@ -1,11 +1,11 @@
-import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, DoCheck, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, DoCheck, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-demo',
   templateUrl: './demo.component.html',
   styleUrls: ['./demo.component.css']
 })
-export class DemoComponent implements OnInit, OnChanges, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked {
+export class DemoComponent implements OnInit, OnChanges, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy {
   @Input() value: string = "Initial Value";
 
   /**
@@ -72,6 +72,14 @@ export class DemoComponent implements OnInit, OnChanges, DoCheck, AfterContentIn
    */ 
   ngAfterViewChecked(): void {
     console.log("- ngAfterViewChecked called!");
+    console.log("  Value: ", this.value);    
+  }
+
+  /**
+   * - ngOnDestroy gets invoked just before the component or directive gets destroyed
+   */ 
+  ngOnDestroy(): void {
+    console.log("- ngOnDestroy called!");
     console.log("  Value: ", this.value);    
   }
 }
