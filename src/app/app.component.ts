@@ -6,6 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Angular application';
-  message = 'Angular is a javascript framework for building client-side application.'
+  title = 'Custom Directive';
 }
