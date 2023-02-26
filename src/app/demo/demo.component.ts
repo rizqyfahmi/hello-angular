@@ -35,7 +35,7 @@ export class DemoComponent implements OnInit, OnChanges, DoCheck, AfterContentIn
   }
 
   /**
-   * - ngDoCheck gets called when every event or change happens
+   * - ngDoCheck gets called whenever event or change happens
    */ 
   ngDoCheck(): void {
     console.log("- ngDoCheck called!");
@@ -52,6 +52,7 @@ export class DemoComponent implements OnInit, OnChanges, DoCheck, AfterContentIn
 
   /**
    * - ngAfterContentChecked gets called whenever projected content (ng-content) has completed checking
+   * - It means that ngAfterContentChecked gets called whenever event or change happens for a projected content (ng-content)
    */ 
   ngAfterContentChecked(): void {
     console.log("- ngAfterContentChecked called!");
@@ -69,6 +70,7 @@ export class DemoComponent implements OnInit, OnChanges, DoCheck, AfterContentIn
 
   /**
    * - ngAfterViewChecked gets invoked after the default change detector has completed one change-check cycle for a component's view
+   * - It means that ngAfterViewChecked gets called whenever event or change happens for a component's view
    */ 
   ngAfterViewChecked(): void {
     console.log("- ngAfterViewChecked called!");
