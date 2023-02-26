@@ -1,12 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-demo',
   templateUrl: './demo.component.html',
   styleUrls: ['./demo.component.css']
 })
-export class DemoComponent implements OnInit {
-  @Input() value: string = "";
+export class DemoComponent implements OnInit, OnChanges {
+  @Input() value: string = "Initial Value";
 
   /**
    * - It's not part of angular lifecycle, It's a feature from javascript/typescrypt
@@ -15,6 +15,15 @@ export class DemoComponent implements OnInit {
   constructor() {
     console.log("- constructor called!");
     console.log("  Value: ", this.value);
+  }
+
+  /**
+   * - ngOnChanges gets fired before ngOnInit (if @input property value has changed for the first time this component is run) and every @input property value is updated
+   */
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log("- ngOnChanges called!");
+    console.log("  Value: ", this.value);
+    console.log("  Changes: ", changes);
   }
 
   /**
