@@ -3,12 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DemoComponent } from './demo/demo.component';
+import { SetBackgroundDirective } from './set-background.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DemoComponent,
+    SetBackgroundDirective,
   ],
   imports: [
     BrowserModule,
