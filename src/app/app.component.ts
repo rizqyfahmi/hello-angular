@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,10 +6,5 @@ import { Component, ViewEncapsulation } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title: string = 'hello-angular';
-  inputText: string = "";
-
-  onSubmit(inputElement: HTMLInputElement) {
-    this.inputText = inputElement.value;
-  }
+  title: string = "Content Child"
 }
