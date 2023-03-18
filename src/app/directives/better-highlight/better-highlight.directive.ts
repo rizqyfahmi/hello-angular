@@ -11,6 +11,8 @@ export class BetterHighlightDirective implements OnInit {
   @Input() defaultColor: string = "transparent";
   // "@input" make "highlightColor" is assignable from the host element by using [highlightColor] = ""
   @Input() highlightColor: string = "pink";
+  // When we create a custom property that is same with the native property of the host element ("title" is already exist in "div"), as the default angular will first check the custom directive. If it doesn't find that property in custom directive, the it will look the native property of the host element
+  @Input() title: string = "This is title";
 
   ngOnInit(): void {
     /**
