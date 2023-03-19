@@ -10,3 +10,7 @@
 <div class="container p-3" [appBetterHighlight]="'red'" [defaultColor]="'yellow'" [title]="'Example title'">
     <p>This is a demo HTML content to understand custom attribute directive in Angular.</p>
 </div>
+<!-- Host Element -->
+<div appClass [display]="{container: true, 'p-3': true, 'change-font': true}">
+    <p>This is a demo HTML content to understand custom attribute directive in Angular.</p>
+</div>
