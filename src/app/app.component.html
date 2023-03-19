@@ -1,16 +1,10 @@
-<!-- Host Element -->
-<div class="container" appSetBackground>
-    <p>This is a demo HTML content to understand custom attribute directive in Angular.</p>
-</div>
-<!-- Host Element -->
-<div class="container" appHighlight appHover>
-    <p>This is a demo HTML content to understand custom attribute directive in Angular.</p>
-</div>
-<!-- Host Element -->
-<div class="container p-3" [appBetterHighlight]="'red'" [defaultColor]="'yellow'" [title]="'Example title'">
-    <p>This is a demo HTML content to understand custom attribute directive in Angular.</p>
-</div>
-<!-- Host Element -->
-<div [appClass]="{container: true, 'p-3': true, 'change-font': true}">
-    <p>This is a demo HTML content to understand custom attribute directive in Angular.</p>
+<div class="container-fluid d-grid gap-12px grid-col-3 p-16px">
+    <div *ngFor="let video of videos">
+        <div class="card" [appHighlight]="video.likes == mostLikedVideo.likes">
+            <div class="card-body">
+                <img [src]="video.thumbnail" alt="thumbnail" class="thumbnail" />
+                <h4>{{ video.title }}</h4>
+            </div>
+        </div>
+    </div>
 </div>

@@ -1,9 +1,9 @@
-import { Directive, ElementRef, OnInit, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 
 @Directive({
   selector: '[appHighlight]'
 })
-export class HighlightDirective implements OnInit {
+export class HighlightDirective {
 
     /**
      * Why we need Renderer2?
@@ -18,9 +18,9 @@ export class HighlightDirective implements OnInit {
       private renderer: Renderer2 // It's a shorthand to create "renderer" property
     ) { }
   
-    ngOnInit(): void {
-      this.renderer.setStyle(this.element.nativeElement, "backgroundColor", "#E96479");
-      this.renderer.addClass(this.element.nativeElement, "p-2");
-      this.renderer.setAttribute(this.element.nativeElement, "title", "This is an example");
+    @Input() set appHighlight(isNeedToBeHighlight: boolean) {
+      if (!!isNeedToBeHighlight) {
+        this.renderer.addClass(this.element.nativeElement, "card-highlight")
+      }
     }
 }
