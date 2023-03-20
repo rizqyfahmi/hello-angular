@@ -7,7 +7,8 @@ export class ClassDirective {
 
   constructor(private element: ElementRef, private renderer: Renderer2) { }
 
-  @Input() set display(value: Object) {
+  // Make an attribute selector without @input alias
+  @Input() set appClass(value: Object) {
     const entries = Object.entries(value);
     for(let [className, condition] of entries) {
       if (condition) {

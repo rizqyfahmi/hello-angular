@@ -15,8 +15,6 @@ type video = {
 })
 export class AppComponent {
   title: string = 'Custom Directive';
-  display: boolean = false;
-  occupation: string = "teacher";
   videos: video[] = [
     { title: "My video 1", share: 415, likes: 257, dislikes: 12, thumbnail: "https://placehold.co/600x400/F99417/FFF" },
     { title: "My video 2", share: 215, likes: 325, dislikes: 12, thumbnail: "https://placehold.co/600x400/5D3891/FFF" },
@@ -27,7 +25,4 @@ export class AppComponent {
     return result;
   }
   mostLikedVideo: video = this.getMostLikesVideo()
-  displayToggle() {
-    this.display = !this.display;
-  }
 }
