@@ -8,3 +8,18 @@
         </div>
     </div>
 </div>
+<div [appStyle]="{ background: '#19A7CE', color: '#FFFFFF', padding: '16px', margin: '0px 16px' }">
+    <p>This is a demo HTML content to understand custom ngStyle directive in Angular.</p>
+</div>
+<button class="button" (click)="displayToggle()">Show notice</button>
+<div class="container-info" *appIf="display">
+    <h3>This is an important notice!</h3>
+    <p>This is a notice issued for all website users.</p>
+</div>
+<!-- ngSwitch is a structural directive but it doesn't start with asterick symbol, because it doesn't manipulate the DOM -->
+<div class="m-h-16px" [ngSwitch]="occupation">
+    <p *ngSwitchCase="'teacher'">This is paragraph will be displayed when occupation is teacher.</p>
+    <p *ngSwitchCase="'designer'">This is paragraph will be displayed when occupation is designer.</p>
+    <p *ngSwitchCase="'lawyer'">This is paragraph will be displayed when occupation is lawyer.</p>
+    <p *ngSwitchDefault>This paragraph is default and will be displayed if no case matches switch expression.</p>
+</div>
