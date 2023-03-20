@@ -11,3 +11,8 @@
 <div [appStyle]="{ background: '#19A7CE', color: '#FFFFFF', padding: '16px', margin: '0px 16px' }">
     <p>This is a demo HTML content to understand custom ngStyle directive in Angular.</p>
 </div>
+<button class="button" (click)="displayToggle()">Show notice</button>
+<div class="container-info" *appIf="display">
+    <h3>This is an important notice!</h3>
+    <p>This is a notice issued for all website users.</p>
+</div>
