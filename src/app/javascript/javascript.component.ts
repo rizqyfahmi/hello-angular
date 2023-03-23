@@ -4,13 +4,15 @@ import { EnrollService } from '../services/enroll/enroll.service';
 @Component({
   selector: 'app-javascript',
   templateUrl: './javascript.component.html',
-  styleUrls: ['./javascript.component.css']
+  styleUrls: ['./javascript.component.css'],
+  providers: [EnrollService]
 })
 export class JavascriptComponent {
   title: string = "Javascript";
 
+  constructor(private enrollService: EnrollService) {}
+
   onEnroll() {
-    const enrollService = new EnrollService()
-    enrollService.onEnrollClicked(this.title);
+    this.enrollService.onEnrollClicked(this.title);
   }
 }
