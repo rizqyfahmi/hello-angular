@@ -5,7 +5,6 @@ import { EnrollService } from '../services/enroll/enroll.service';
   selector: 'app-javascript',
   templateUrl: './javascript.component.html',
   styleUrls: ['./javascript.component.css'],
-  providers: [EnrollService]
 })
 export class JavascriptComponent {
   title: string = "Javascript";
