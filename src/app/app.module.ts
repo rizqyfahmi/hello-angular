@@ -17,11 +17,6 @@ import { EnrollService } from './services/enroll/enroll.service';
     BrowserModule,
     AppRoutingModule
   ],
-  /**
-   * - Once we provide a service in the AppModule, the same instance of that service will be available throughout the app
-   *   i.e. in all components, directives, and services
-   * */
-  providers: [EnrollService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
