@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { from } from 'rxjs';
+import { filter, from, map } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -9,14 +9,22 @@ import { from } from 'rxjs';
 export class AppComponent implements OnInit {
   title = 'Observable';
 
-  arrOne = [1, 2, 3, 4];
+  arrOne = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   /**
-   * - We only can pass a single iterable argument (array, etc.)
-   * - We can't execute block of code as we can do when we use "new Observable"
-   * - It will emit each of the values inside the iterable argument (it emits the value, one by one from that iterable argument)
-   * - The complete signal is handled by "from"
+   * - Operators are used to transform the data is emitted by an observable, then that operator returns a new observable with the transformed data
+   * - Operator is a function that takes an observable as its input and returns another observable.
+   * - Pipe is used to combine/chain multiple operators
    * */
-  myObservable = from(this.arrOne);
+  myObservable = from(this.arrOne).pipe(
+    // Map will returns a new observable with the transformed data
+    map((value) => {
+      return value * 5;
+    }),
+    // Filter will returns a new observable with the filtered data
+    filter((value) => {
+      return value >= 30;
+    })
+  );
 
   ngOnInit(): void {
     /**
