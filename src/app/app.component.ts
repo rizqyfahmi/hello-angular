@@ -22,6 +22,7 @@ export class AppComponent implements OnInit{
 
   // It will create a new observable every time we call this method, even if we already have an active observable.
   subscribe() {
+    if (!(this.subscribedObservable?.closed ?? true)) return;
     this.subscribedObservable = this.myObservable.subscribe((value) => {
       console.log(value);
     });
