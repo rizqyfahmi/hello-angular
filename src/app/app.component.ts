@@ -12,17 +12,8 @@ type video = {
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  providers: [UserService]
+  styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'User Service';
-
-  constructor(private userService: UserService) {}
-
-  users: { name: string, status: string }[] = [];
-
-  ngOnInit(): void {
-    this.users = this.userService.users;
-  }
 }
