@@ -8,6 +8,7 @@ import { ContactComponent } from './contact/contact.component';
 import { CoursesComponent } from './courses/courses.component';
 import { HomeComponent } from './home/home.component';
 import { RouterModule, Routes } from '@angular/router';
+import { ErrorComponent } from './error/error.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -15,6 +16,12 @@ const appRoutes: Routes = [
   { path: 'About', component: AboutComponent },
   { path: 'Contact', component: ContactComponent },
   { path: 'Courses', component: CoursesComponent },
+  /**
+   * - This wild card route should be placed in the last, 
+   *   that's because this route matches to every route path which the user will enter in the url bar
+   * - So, angular will search the matched route from the top
+   * */ 
+  { path: "**", component: ErrorComponent } 
 ]
 @NgModule({
   declarations: [
@@ -22,7 +29,8 @@ const appRoutes: Routes = [
     AboutComponent,
     ContactComponent,
     CoursesComponent,
-    HomeComponent
+    HomeComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
