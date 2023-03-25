@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -9,21 +9,14 @@ import { Observable } from 'rxjs';
 export class AppComponent implements OnInit {
   title = 'Observable';
 
+  arrOne = [1, 2, 3, 4];
+  arrTwo = ["A", "B", "C", "D"];
   /**
-   * - It similar to creating an observable using the observable construtor
-   * - It's deprecated (Not recomeded to use)
+   * - We only can pass any number of arguments. Those arguments will be emitted as the data from that observable
+   * - We can't execute block of code as we can do when we use "new Observable"
+   * - The complete signal is handled by "of"
    * */
-  myObservable = Observable.create((observer: any) => {
-    console.log("Observable starts");
-    setTimeout(() => observer.next(1), 1000);
-    setTimeout(() => observer.next(2), 2000);
-    setTimeout(() => observer.next(3), 3000);
-    setTimeout(() => observer.next(4), 4000);
-    setTimeout(() => observer.next(5), 5000);
-    setTimeout(() => observer.error(new Error("Something went wrong! Please try again letter!")), 6000);
-    // setTimeout(() => observer.complete(), 6000);
-    setTimeout(() => observer.next(6), 7000); // It will not be emitted because of complete signal is already sent
-  });
+  myObservable = of(this.arrOne, this.arrTwo, 27, "Hello");
 
   ngOnInit(): void {
     /**
