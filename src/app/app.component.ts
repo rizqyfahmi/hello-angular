@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { of } from 'rxjs';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -10,13 +10,13 @@ export class AppComponent implements OnInit {
   title = 'Observable';
 
   arrOne = [1, 2, 3, 4];
-  arrTwo = ["A", "B", "C", "D"];
   /**
-   * - We only can pass any number of arguments. Those arguments will be emitted as the data from that observable
+   * - We only can pass a single iterable argument (array, etc.)
    * - We can't execute block of code as we can do when we use "new Observable"
-   * - The complete signal is handled by "of"
+   * - It will emit each of the values inside the iterable argument (it emits the value, one by one from that iterable argument)
+   * - The complete signal is handled by "from"
    * */
-  myObservable = of(this.arrOne, this.arrTwo, 27, "Hello");
+  myObservable = from(this.arrOne);
 
   ngOnInit(): void {
     /**
