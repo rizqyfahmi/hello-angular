@@ -5,6 +5,7 @@ import { ContactComponent } from './contact/contact.component';
 import { CourseComponent } from './courses/course/course.component';
 import { CoursesComponent } from './courses/courses.component';
 import { ErrorComponent } from './error/error.component';
+import { AuthGuard } from './guards/auth.guard';
 import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
@@ -13,10 +14,10 @@ const routes: Routes = [
   { path: 'About', component: AboutComponent },
   { path: 'Contact', component: ContactComponent },
   {
-    path: 'Courses', children: [
-      { path: '', component: CoursesComponent },
+    path: 'Courses', component: CoursesComponent, children: [
       { path: 'Course/:id', component: CourseComponent }
-    ]
+    ],
+    canActivate: [AuthGuard] // for http://localhost:4200/Courses
   },
   /**
    * - This wild card route should be placed in the last, 
