@@ -10,9 +10,11 @@ import { course } from 'src/app/types/course';
   styleUrls: ['./course.component.css']
 })
 export class CourseComponent implements OnInit, OnDestroy {
-  course?: course;
+  course?: course | null;
   courseId?: string | null;
   routeObs?: Subscription | null;
+  queryObs?: Subscription | null;
+  editMode: boolean = false;
 
   constructor(private activatedRoute: ActivatedRoute, private service: CoursesService) {}
   
@@ -26,6 +28,10 @@ export class CourseComponent implements OnInit, OnDestroy {
       this.courseId = param.get("id");
       this.course = this.service.courses.find((course) => course.id.toString() == this.courseId)
     });
+
+    this.queryObs = this.activatedRoute.queryParamMap.subscribe((param) => {
+      this.editMode = Boolean(param.get("edit"));
+    })
   }
 
   ngOnDestroy(): void {
@@ -33,6 +39,7 @@ export class CourseComponent implements OnInit, OnDestroy {
      * Even though angular will take care of unsubscription (paramMap) but it's good practice to explictly unsubscribe from an observable
      * */ 
     this.routeObs?.unsubscribe();
+    this.queryObs?.unsubscribe();
   }
 
 }
