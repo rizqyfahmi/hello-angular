@@ -13,9 +13,9 @@ export class AboutComponent {
   navigateToHome() {
     /**
      * - By default, navigate uses absolute route paths
-     * - We need to pass url its argument
-     * */ 
-    this.route.navigateByUrl("Home");
+     * - We need to pass an array of path as its argument
+     * */
+    this.route.navigate(["Home"]);
   }
 
 }
