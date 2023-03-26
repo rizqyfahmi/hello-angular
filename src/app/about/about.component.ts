@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-about',
@@ -8,14 +8,14 @@ import { Router } from '@angular/router';
 })
 export class AboutComponent {
 
-  constructor(private route: Router) {}
+  constructor(private route: Router, private activatedRoute: ActivatedRoute) {}
 
   navigateToHome() {
     /**
      * - By default, navigate uses absolute route paths
-     * - We need to pass an array of path as its argument
+     * - Make "navigate" to be relative route
      * */
-    this.route.navigate(["Home"]);
+    this.route.navigate(["Home"], { relativeTo: this.activatedRoute }); // http://localhost:4200/About/Home
   }
 
 }
