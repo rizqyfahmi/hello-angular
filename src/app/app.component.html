@@ -1,2 +1,22 @@
-<button (click)="unsubscribe()">Unsubscribe</button>
-<button (click)="subscribe()">Subscribe</button>
+<div class="main-container">
+  <div class="nav-container">
+    <ul>
+      <!-- 
+        exact: make routerLinkActive to be applied only the route url matches exactly to the current url. 
+        If we don't give it, then this home route always active because we set routerLink into blank (base url) 
+        where all routes always starts from base url -->
+      <li [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact: true}"><a routerLink="">Home</a></li>
+      <li [routerLinkActive]="'active'"><a [routerLink]="'About'">About</a></li>
+      <li [routerLinkActive]="'active'"><a [routerLink]="['Contact']">Contact</a></li>
+      <li [routerLinkActive]="'active'"><a routerLink="Courses">Courses</a></li>
+      <span style="float: right">
+        <li *ngIf="!isAuthenticated()"><a (click)="login()">Login</a></li>
+        <li *ngIf="isAuthenticated()"><a (click)="logout()">Logout</a></li>
+      </span>
+    </ul>
+  </div>
+  <div class="component-container">
+    <router-outlet></router-outlet>
+    <div class="spinner" *ngIf="displayLoadingIndicator"></div>
+  </div>
+</div>
