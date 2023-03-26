@@ -17,7 +17,7 @@ const routes: Routes = [
     path: 'Courses', component: CoursesComponent, children: [
       { path: 'Course/:id', component: CourseComponent }
     ],
-    canActivate: [AuthGuard] // for http://localhost:4200/Courses
+    canActivateChild: [AuthGuard] // for http://localhost:4200/Courses/Course/:id
   },
   /**
    * - This wild card route should be placed in the last, 
