@@ -8,6 +8,7 @@ import { ErrorComponent } from './error/error.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ContactGuard } from './guards/contact.guard';
 import { HomeComponent } from './home/home.component';
+import { CourseResolve } from './guards/course.resolve';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,7 +19,8 @@ const routes: Routes = [
     path: 'Courses', component: CoursesComponent, children: [
       { path: 'Course/:id', component: CourseComponent }
     ],
-    canActivateChild: [AuthGuard] // for http://localhost:4200/Courses/Course/:id
+    canActivateChild: [AuthGuard], // for http://localhost:4200/Courses/Course/:id
+    resolve: { courses: CourseResolve } // it will load http://localhost:4200/Courses after 5 seconds
   },
   /**
    * - This wild card route should be placed in the last, 

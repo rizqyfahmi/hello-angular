@@ -52,4 +52,12 @@ export class CoursesService {
       description: 'In this course you will learn about reactive web development using HTML & CSS. This course will start teaching you from basics of HTML & CSS and as you progress, you will learn all the advance concepts.'
     }
   ];
+
+  getAllCourses(): Promise<course[]> {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(this.courses);
+      }, 5000);
+    })
+  }
 }
