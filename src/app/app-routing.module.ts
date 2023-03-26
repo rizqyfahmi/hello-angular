@@ -6,13 +6,14 @@ import { CourseComponent } from './courses/course/course.component';
 import { CoursesComponent } from './courses/courses.component';
 import { ErrorComponent } from './error/error.component';
 import { AuthGuard } from './guards/auth.guard';
+import { ContactGuard } from './guards/contact.guard';
 import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'Home', component: HomeComponent },
   { path: 'About', component: AboutComponent },
-  { path: 'Contact', component: ContactComponent },
+  { path: 'Contact', component: ContactComponent, canDeactivate: [ContactGuard] },
   {
     path: 'Courses', component: CoursesComponent, children: [
       { path: 'Course/:id', component: CourseComponent }
