@@ -1,6 +1,16 @@
 .main-container{
     width: 960px;
-    margin: 10px auto;
+    margin: 0px auto;
+}
+.nav-container {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    
+}
+.component-container {
+    margin-top: 50px;
 }
 ul {
     list-style-type: none;
