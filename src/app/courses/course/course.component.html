@@ -20,6 +20,6 @@
         <p>{{course?.description}}</p>
     </div>
 
-    <button [routerLink]="['/Courses/Course', course?.id]" [queryParams]="{ edit: true }">Edit</button>
-    <button [routerLink]="['/Courses/Course', course?.id]" (click)="editMode=false">Update</button>
+    <button (click)="onEdit()">Edit</button>
+    <button (click)="onUpdate()">Update</button>
 </div>

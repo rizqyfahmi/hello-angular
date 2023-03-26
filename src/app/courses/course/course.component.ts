@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CoursesService } from 'src/app/services/courses.service';
 import { course } from 'src/app/types/course';
@@ -16,7 +16,7 @@ export class CourseComponent implements OnInit, OnDestroy {
   queryObs?: Subscription | null;
   editMode: boolean = false;
 
-  constructor(private activatedRoute: ActivatedRoute, private service: CoursesService) {}
+  constructor(private activatedRoute: ActivatedRoute, private service: CoursesService, private route: Router) {}
   
   ngOnInit(): void {
     /**
@@ -40,6 +40,15 @@ export class CourseComponent implements OnInit, OnDestroy {
      * */ 
     this.routeObs?.unsubscribe();
     this.queryObs?.unsubscribe();
+  }
+
+  onEdit(): void {
+    this.route.navigate(['/Courses/Course', this.courseId], { queryParams: { edit: true } });
+  }
+
+  onUpdate(): void {
+    this.editMode = false;
+    this.route.navigate(['/Courses/Course', this.courseId]);
   }
 
 }
