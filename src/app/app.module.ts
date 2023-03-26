@@ -17,8 +17,10 @@ const appRoutes: Routes = [
   { path: 'Home', component: HomeComponent },
   { path: 'About', component: AboutComponent },
   { path: 'Contact', component: ContactComponent },
-  { path: 'Courses', component: CoursesComponent },
-  { path: 'Courses/Course/:id', component: CourseComponent },
+  { path: 'Courses', children: [
+    { path: '', component: CoursesComponent },
+    { path: 'Course/:id', component: CourseComponent }
+  ]},
   /**
    * - This wild card route should be placed in the last, 
    *   that's because this route matches to every route path which the user will enter in the url bar
