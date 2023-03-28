@@ -27,7 +27,8 @@ export class AppComponent implements OnInit{
   }
 
   changeGender() {
-    // When we filter for gender, we will not see the changes
-    this.students[0].gender = 'Female';
+    const studentCopy: Student[] = Object.assign([], this.students)
+    studentCopy[0].gender = 'Female';
+    this.students = studentCopy;
   }
 }
