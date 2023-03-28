@@ -10,7 +10,8 @@ import { Student } from './types/student';
 export class AppComponent implements OnInit{
   title: string = 'Angular Pipes';
   students: Student[] = []; 
-  totalMarks: number = 0
+  totalMarks: number = 0;
+  filterText: string = "";
 
   constructor(private studentService: StudentService) {}
   

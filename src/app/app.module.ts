@@ -4,11 +4,13 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { PercentagePipe } from './pipes/percentage.pipe';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PercentagePipe
+    PercentagePipe,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
