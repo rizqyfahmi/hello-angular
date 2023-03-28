@@ -25,4 +25,9 @@ export class AppComponent implements OnInit{
     studentCopy.push({name: 'TEST', course: 'TEST', marks: 520, DOB: new Date(), gender: 'Female'});
     this.students = studentCopy; // Using this line "this.students" will be assined by new reference of students array. So, it will becomes pure change
   }
+
+  changeGender() {
+    // When we filter for gender, we will not see the changes
+    this.students[0].gender = 'Female';
+  }
 }
