@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Event, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
-import { AuthService } from './services/auth.service';
+import { StudentService } from './services/student.service';
+import { Student } from './types/student';
 
 @Component({
   selector: 'app-root',
@@ -8,37 +8,14 @@ import { AuthService } from './services/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  title = 'hello-angular';
-  displayLoadingIndicator: boolean = false;
+  title: string = 'Angular Pipes';
+  students: Student[] = []; 
+  totalMarks: number = 0
 
-  constructor(private activatedRoute: ActivatedRoute, private authService: AuthService, private route: Router) {}
+  constructor(private studentService: StudentService) {}
   
   ngOnInit(): void {
-    this.activatedRoute.fragment.subscribe((value) => {
-      document.getElementById(value!)?.scrollIntoView({ behavior: 'smooth' })
-    });
-
-    this.route.events.subscribe((routerEvent: Event) => {
-      // Since we create a "resolve route guard", then we need to show loading bar when visit a page
-      if (routerEvent instanceof NavigationStart) {
-        this.displayLoadingIndicator = true;
-      }
-      
-      if (routerEvent instanceof NavigationEnd || routerEvent instanceof NavigationCancel || routerEvent instanceof NavigationError) {
-        this.displayLoadingIndicator = false;
-      }
-    })
-  }
-
-  login(): void {
-    this.authService.login();
-  }
-
-  logout(): void {
-    this.authService.logout();
-  }
-
-  isAuthenticated(): boolean {
-    return this.authService.isAuthenticated();
+    this.students = this.studentService.students;
+    this.totalMarks = this.studentService.totalMarks;
   }
 }
