@@ -15,7 +15,7 @@
     <tr *ngFor="let std of students | filterStudent: filterText"> <!-- (value) | (custom pipe): (filterText) -->
       <td>{{std.name}}</td>
       <td>{{std.course}}</td>
-      <td>{{std.marks}}</td>
+      <td><input type="number" value="std.marks" [(ngModel)]="std.marks"></td>
       <td>{{std.marks | percentage: totalMarks : 2}}</td> <!-- (value) | (custom pipe): (totalMarks) : (decimal) -->
       <td>{{std.DOB | date: 'fullDate' | uppercase}}</td>
       <td>{{std.gender | lowercase}}</td>
