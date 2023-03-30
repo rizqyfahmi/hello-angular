@@ -21,14 +21,12 @@ export class AppComponent implements OnInit{
   }
 
   addDummyStudent() {
-    const studentCopy = Object.assign([], this.students)
-    studentCopy.push({name: 'TEST', course: 'TEST', marks: 520, DOB: new Date(), gender: 'Female'});
-    this.students = studentCopy; // Using this line "this.students" will be assined by new reference of students array. So, it will becomes pure change
+    this.students.push({ name: 'TEST', course: 'TEST', marks: 520, DOB: new Date(), gender: 'Female' });
   }
 
   changeGender() {
-    const studentCopy: Student[] = Object.assign([], this.students)
-    studentCopy[0].gender = 'Female';
-    this.students = studentCopy;
+    this.students[0].gender = 'Female';
   }
+  // It used to prove that impure pipe gets executed for every changes (let's hover the table)
+  onMouseMove() { }
 }

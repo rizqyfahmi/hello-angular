@@ -3,7 +3,7 @@
     <input type="text" placeholder="Search by gender" class="gender-filter" [(ngModel)]="filterText">
   </div>
 
-  <table id="student">
+  <table id="student" (mousemove)="onMouseMove()">
     <tr>
       <th>Name</th>
       <th>Course</th>
