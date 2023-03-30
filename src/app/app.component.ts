@@ -13,6 +13,11 @@ export class AppComponent implements OnInit{
   totalMarks: number = 0;
   _filterText: string = ''; // Because we want to use filtering logic. We need to split the binded and filtered state;
   filteredStudents: Student[] = [];
+  totalStudents = new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(this.filteredStudents.length);
+    }, 2000);
+  });
 
   constructor(private studentService: StudentService) {}
   

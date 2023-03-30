@@ -2,7 +2,10 @@
   <div>
     <input type="text" placeholder="Search by gender" class="gender-filter" [(ngModel)]="filterText">
   </div>
-
+  <div>
+    <!-- async pipe is used to handle asynchronous data -->
+    <h3>Total Students: {{totalStudents | async}}</h3> <!-- (value) | (async pipe) -->
+  </div>
   <table id="student" (mousemove)="onMouseMove()">
     <tr>
       <th>Name</th>
