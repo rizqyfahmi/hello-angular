@@ -2,8 +2,11 @@
   <div>
     <input type="text" placeholder="Search by gender" class="gender-filter" [(ngModel)]="filterText">
   </div>
-
-  <table id="student">
+  <div>
+    <!-- async pipe is used to handle asynchronous data -->
+    <h3>Total Students: {{totalStudents | async}}</h3> <!-- (value) | (async pipe) -->
+  </div>
+  <table id="student" (mousemove)="onMouseMove()">
     <tr>
       <th>Name</th>
       <th>Course</th>
@@ -12,16 +15,13 @@
       <th>DOB</th>
       <th>Gender</th>
     </tr>
-    <tr *ngFor="let std of students | filterStudent: filterText"> <!-- (value) | (custom pipe): (filterText) -->
+    <tr *ngFor="let std of filteredStudents">
       <td>{{std.name}}</td>
       <td>{{std.course}}</td>
-      <td><input type="number" value="std.marks" [(ngModel)]="std.marks"></td>
+      <td>{{std.marks}}</td>
       <td>{{std.marks | percentage: totalMarks : 2}}</td> <!-- (value) | (custom pipe): (totalMarks) : (decimal) -->
       <td>{{std.DOB | date: 'fullDate' | uppercase}}</td>
       <td>{{std.gender | lowercase}}</td>
     </tr>
   </table>
-  <br><br>
-  <button (click)="addDummyStudent()">Add Student</button>
-  <button (click)="changeGender()">Change Gender</button>
 </div>
