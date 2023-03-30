@@ -19,4 +19,14 @@ export class AppComponent implements OnInit{
     this.students = this.studentService.students;
     this.totalMarks = this.studentService.totalMarks;
   }
+
+  addDummyStudent() {
+    this.students.push({ name: 'TEST', course: 'TEST', marks: 520, DOB: new Date(), gender: 'Female' });
+  }
+
+  changeGender() {
+    this.students[0].gender = 'Female';
+  }
+  // It used to prove that impure pipe gets executed for every changes (let's hover the table)
+  onMouseMove() { }
 }
