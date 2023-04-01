@@ -1,7 +1,8 @@
 <div class="form">
   <h2 id="registration">Registration Form</h2>
   <!-- ngSubmit will be called when form is submitted -->
-  <form (ngSubmit)="onSubmit()">
+  <!-- #myForm is a local reference, then we passed it as onSubmit parameter-->
+  <form (ngSubmit)="onSubmit(myForm)" #myForm>
 
     <label for="fname">First Name</label>
     <input type="text" id="fname" placeholder="Your name.." name="firstname">

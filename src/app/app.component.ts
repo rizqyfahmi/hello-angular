@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'hello-angular';
 
-  onSubmit() {
-    console.log('Form Submitted!')
+  onSubmit(form: HTMLFormElement) {
+    console.log(form)
   }
 }
