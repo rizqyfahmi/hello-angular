@@ -5,16 +5,20 @@
   <form (ngSubmit)="onSubmit(myForm)" #myForm="ngForm">
 
     <label for="fname">First Name</label>
-    <input type="text" id="fname" placeholder="Your name.." name="firstname">
+    <!-- To get control of this element, we need to specify "name" and ngModel -->
+    <!-- Because we used "ngForm" (only want to get control of this element from our "ngForm" object), we don't need to assign a value into ngModel -->
+    <!-- We will get "firstname" inside "controls" object in the console log -->
+    <!-- To get its value, we can find it on "value" object in the console log -->
+    <input type="text" id="fname" placeholder="Your name.." name="firstname" ngModel> 
 
     <label for="lname">Last Name</label>
-    <input type="text" id="lname" placeholder="Your last name.." name="lastname">
+    <input type="text" id="lname" placeholder="Your last name.." name="lastname" ngModel>
 
     <label for="email">Email</label>
-    <input type="email" id="email" name="email" placeholder="Your last email.." name="email">
+    <input type="email" id="email" placeholder="Your last email.." name="email" ngModel>
 
     <label for="country">Country</label>
-    <select id="country" name="country">
+    <select id="country" name="country" ngModel>
       <option value="australia">Australia</option>
       <option value="canada">Canada</option>
       <option value="usa">USA</option>
@@ -23,19 +27,19 @@
     </select>
 
     <label for="gender">Gender:</label>
-    <input type="radio" id="male" value="male">
+    <input type="radio" id="male" value="male" name="gender" ngModel>
     <label for="male">Male</label>
-    <input type="radio" id="female" value="female">
+    <input type="radio" id="female" value="female" name="gender" ngModel>
     <label for="female">Female</label>
-    <input type="radio" id="other" value="other" checked>
+    <input type="radio" id="other" value="other" name="gender" ngModel checked>
     <label for="other">Other</label>
     <br><br>
 
     <label>Hobbies <i>(Optional)</i></label>
     <div class="form-inline">
-      <label><input type="checkbox" value="sports" name="hobbies"> Sports</label>
-      <label><input type="checkbox" value="movies" name="hobbies"> Movies</label>
-      <label><input type="checkbox" value="music" name="hobbies"> Music</label>
+      <label><input type="checkbox" value="sports" name="hobbies" ngModel> Sports</label>
+      <label><input type="checkbox" value="movies" name="hobbies" ngModel> Movies</label>
+      <label><input type="checkbox" value="music" name="hobbies" ngModel> Music</label>
     </div>
 
     <input type="submit" value="Submit" id="btn">
