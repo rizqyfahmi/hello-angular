@@ -23,4 +23,20 @@ export class AppComponent {
   onSubmit() {
     console.log(this.form)
   }
+
+  setDefaultValues() {
+    /**
+     * - Used to set value for each form object properties (but when we using "setValue" we need to set all properties value)
+     */
+    this.form?.setValue({
+      country: '',
+      gender: '',
+      hobbies: '',
+      personalDetails: {
+        firstname: 'John',
+        lastname: 'Smith',
+        email: 'john.smith@email.com'
+      }
+    })
+  }
 }
