@@ -9,13 +9,14 @@
     <!-- Because we used "ngForm" (only want to get control of this element from our "ngForm" object), we don't need to assign a value into ngModel -->
     <!-- We will get "firstname" inside "controls" object in the console log -->
     <!-- To get its value, we can find it on "value" object in the console log -->
-    <input type="text" id="fname" placeholder="Your name.." name="firstname" ngModel> 
+    <!-- To get validation status, we can find it on "valid" property either in form or field level -->
+    <input type="text" id="fname" placeholder="Your name.." name="firstname" ngModel required> 
 
     <label for="lname">Last Name</label>
-    <input type="text" id="lname" placeholder="Your last name.." name="lastname" ngModel>
+    <input type="text" id="lname" placeholder="Your last name.." name="lastname" ngModel required>
 
     <label for="email">Email</label>
-    <input type="email" id="email" placeholder="Your last email.." name="email" ngModel>
+    <input type="email" id="email" placeholder="Your last email.." name="email" ngModel required>
 
     <label for="country">Country</label>
     <select id="country" name="country" ngModel>
