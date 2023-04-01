@@ -1,60 +1,51 @@
-import { Component, OnInit } from '@angular/core';
-import { StudentService } from './services/student.service';
-import { Student } from './types/student';
+import { Component, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
-  title: string = 'Angular Pipes';
-  students: Student[] = []; 
-  totalMarks: number = 0;
-  _filterText: string = ''; // Because we want to use filtering logic. We need to split the binded and filtered state;
-  filteredStudents: Student[] = [];
-  totalStudents = new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(this.filteredStudents.length);
-    }, 2000);
-  });
+export class AppComponent {
+  title = 'hello-angular';
+  defaultCountry = 'india';
+  firstname: string = '';
+  lastname: string = '';
+  email: string = '';
+  country: string = '';
+  gender: string = '';
+  defaultGender: string = "Female";
+  genders: { id: string, value: string }[] = [
+    { id: '1', value: 'Male' },
+    { id: '2', value: 'Female' },
+    { id: '3', value: 'Other' },
+  ];
 
-  constructor(private studentService: StudentService) {}
-  
-  ngOnInit(): void {
-    this.students = this.studentService.students;
-    this.totalMarks = this.studentService.totalMarks;
-    this.filteredStudents = this.students;
+  @ViewChild('myForm') form?: NgForm;
+
+  onSubmit() {
+    console.log(this.form);
+
+    this.firstname = this.form?.value.personalDetails.firstname;
+    this.lastname = this.form?.value.personalDetails.lastname;
+    this.email = this.form?.value.personalDetails.email;
+    this.gender = this.form?.value.gender;
+    this.country = this.form?.value.country;
+
+    this.form?.reset();
+
   }
 
-  addDummyStudent() {
-    this.students.push({ name: 'TEST', course: 'TEST', marks: 520, DOB: new Date(), gender: 'Female' });
-    this.filteredStudents = this.filterStudentByGender(this._filterText);
-  }
-
-  changeGender() {
-    this.students[0].gender = 'Female';
-    this.filteredStudents = this.filterStudentByGender(this._filterText);
-  }
-  // It used to prove that impure pipe gets executed for every changes (let's hover the table)
-  onMouseMove() { }
-
-  get filterText() {
-    return this._filterText;
-  }
-
-  set filterText(value: string) {
-    this._filterText = value;
-    this.filteredStudents = this.filterStudentByGender(value);
-  }
-
-  filterStudentByGender(filterTerm: string) {
-    if (this.students.length === 0 || this.filterText === '') {
-      return this.students;
-    } else {
-      return this.students.filter((student) => {
-        return student.gender.toLowerCase() === filterTerm.toLowerCase();
-      })
-    }
+  setDefaultValues() {
+    /**
+     * - Using "patchValue" we can set value for specific property without need to set value of all properties 
+     */
+    this.form?.form.patchValue({
+      personalDetails: {
+        firstname: 'John',
+        lastname: 'Smith',
+        email: 'john.smith@email.com'
+      }
+    })
   }
 }
