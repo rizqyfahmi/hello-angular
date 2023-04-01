@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { StudentService } from './services/student.service';
-import { Student } from './types/student';
+import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +9,7 @@ import { Student } from './types/student';
 export class AppComponent {
   title = 'hello-angular';
 
-  onSubmit(form: HTMLFormElement) {
+  onSubmit(form: NgForm) {
     console.log(form)
   }
 }
