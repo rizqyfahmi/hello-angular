@@ -26,12 +26,9 @@ export class AppComponent {
 
   setDefaultValues() {
     /**
-     * - Used to set value for each form object properties (but when we using "setValue" we need to set all properties value)
+     * - Using "patchValue" we can set value for specific property without need to set value of all properties 
      */
-    this.form?.setValue({
-      country: '',
-      gender: '',
-      hobbies: '',
+    this.form?.form.patchValue({
       personalDetails: {
         firstname: 'John',
         lastname: 'Smith',
