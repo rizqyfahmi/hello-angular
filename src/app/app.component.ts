@@ -9,6 +9,8 @@ import { NgForm } from '@angular/forms';
 export class AppComponent {
   title = 'hello-angular';
   defaultCountry = 'india';
+  firstname: string = '';
+  lastname: string = '';
   @ViewChild('myForm') form?: NgForm;
 
   onSubmit() {

@@ -11,13 +11,17 @@
     <!-- To get its value, we can find it on "value" object in the console log -->
     <!-- To get validation status, we can find it on "valid" property either in form or field level -->
     <!-- #fname will receive firstname object -->
-    <input type="text" id="fname" placeholder="Your name.." name="firstname" ngModel required #fname="ngModel">
-    <div *ngIf="fname.invalid && fname.touched">
-      <small>First name is required field</small>
+    <input type="text" id="fname" placeholder="Your name.." name="firstname" [(ngModel)]="firstname" required #fname="ngModel">
+    <div>
+      <small *ngIf="fname.invalid && fname.touched">First name is required field</small>
+      <span *ngIf="firstname">You entered {{ firstname }}</span>
     </div>
 
     <label for="lname">Last Name</label>
-    <input type="text" id="lname" placeholder="Your last name.." name="lastname" ngModel required>
+    <input type="text" id="lname" placeholder="Your last name.." name="lastname" [(ngModel)]="lastname" required>
+    <div>
+      <span *ngIf="lastname">You entered {{ lastname }}</span>
+    </div>
 
     <label for="email">Email</label>
     <input type="email" id="email" placeholder="Your last email.." name="email" ngModel required email>
