@@ -11,6 +11,9 @@ export class AppComponent {
   defaultCountry = 'india';
   firstname: string = '';
   lastname: string = '';
+  email: string = '';
+  country: string = '';
+  gender: string = '';
   defaultGender: string = "Female";
   genders: { id: string, value: string }[] = [
     { id: '1', value: 'Male' },
@@ -21,7 +24,16 @@ export class AppComponent {
   @ViewChild('myForm') form?: NgForm;
 
   onSubmit() {
-    console.log(this.form)
+    console.log(this.form);
+
+    this.firstname = this.form?.value.personalDetails.firstname;
+    this.lastname = this.form?.value.personalDetails.lastname;
+    this.email = this.form?.value.personalDetails.email;
+    this.gender = this.form?.value.gender;
+    this.country = this.form?.value.country;
+
+    this.form?.reset();
+
   }
 
   setDefaultValues() {
