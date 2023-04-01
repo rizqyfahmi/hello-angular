@@ -36,12 +36,10 @@
     </select>
 
     <label for="gender">Gender:</label>
-    <input type="radio" id="male" value="male" name="gender" ngModel>
-    <label for="male">Male</label>
-    <input type="radio" id="female" value="female" name="gender" ngModel>
-    <label for="female">Female</label>
-    <input type="radio" id="other" value="other" name="gender" ngModel checked>
-    <label for="other">Other</label>
+    <span *ngFor="let gender of genders">
+      <input type="radio" id="{{ gender.id }}" value="{{ gender.value }}" name="gender" [ngModel]="defaultGender">
+      <label for="male">{{ gender.value }}</label>
+    </span>
     <br><br>
 
     <label>Hobbies <i>(Optional)</i></label>
