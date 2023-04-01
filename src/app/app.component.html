@@ -43,6 +43,6 @@
       <label><input type="checkbox" value="music" name="hobbies" ngModel> Music</label>
     </div>
 
-    <input type="submit" value="Submit" id="btn">
+    <input type="submit" value="Submit" id="btn" [disabled]="!myForm.valid">
   </form>
 </div>
