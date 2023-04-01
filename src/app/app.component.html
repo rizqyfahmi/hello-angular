@@ -2,7 +2,7 @@
   <h2 id="registration">Registration Form</h2>
   <!-- ngSubmit will be called when form is submitted -->
   <!-- #myForm is a local reference, then we passed it as onSubmit parameter-->
-  <form (ngSubmit)="onSubmit(myForm)" #myForm="ngForm">
+  <form (ngSubmit)="onSubmit()" #myForm="ngForm">
 
     <label for="fname">First Name</label>
     <!-- To get control of this element, we need to specify "name" and ngModel -->
