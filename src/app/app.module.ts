@@ -3,15 +3,15 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { PercentagePipe } from './pipes/percentage.pipe';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PercentagePipe,
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     FormsModule
   ],
   bootstrap: [AppComponent]

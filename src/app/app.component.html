@@ -1,27 +1,42 @@
-<div class="container">
-  <div>
-    <input type="text" placeholder="Search by gender" class="gender-filter" [(ngModel)]="filterText">
-  </div>
-  <div>
-    <!-- async pipe is used to handle asynchronous data -->
-    <h3>Total Students: {{totalStudents | async}}</h3> <!-- (value) | (async pipe) -->
-  </div>
-  <table id="student" (mousemove)="onMouseMove()">
-    <tr>
-      <th>Name</th>
-      <th>Course</th>
-      <th>Marks</th>
-      <th>Percentage</th>
-      <th>DOB</th>
-      <th>Gender</th>
-    </tr>
-    <tr *ngFor="let std of filteredStudents">
-      <td>{{std.name}}</td>
-      <td>{{std.course}}</td>
-      <td>{{std.marks}}</td>
-      <td>{{std.marks | percentage: totalMarks : 2}}</td> <!-- (value) | (custom pipe): (totalMarks) : (decimal) -->
-      <td>{{std.DOB | date: 'fullDate' | uppercase}}</td>
-      <td>{{std.gender | lowercase}}</td>
-    </tr>
-  </table>
+<div class="form">
+  <h2 id="registration">Registration Form</h2>
+  <!-- ngSubmit will be called when form is submitted -->
+  <form (ngSubmit)="onSubmit()">
+
+    <label for="fname">First Name</label>
+    <input type="text" id="fname" placeholder="Your name.." name="firstname">
+
+    <label for="lname">Last Name</label>
+    <input type="text" id="lname" placeholder="Your last name.." name="lastname">
+
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" placeholder="Your last email.." name="email">
+
+    <label for="country">Country</label>
+    <select id="country" name="country">
+      <option value="australia">Australia</option>
+      <option value="canada">Canada</option>
+      <option value="usa">USA</option>
+      <option value="india">India</option>
+      <option value="uk">UK</option>
+    </select>
+
+    <label for="gender">Gender:</label>
+    <input type="radio" id="male" value="male">
+    <label for="male">Male</label>
+    <input type="radio" id="female" value="female">
+    <label for="female">Female</label>
+    <input type="radio" id="other" value="other" checked>
+    <label for="other">Other</label>
+    <br><br>
+
+    <label>Hobbies <i>(Optional)</i></label>
+    <div class="form-inline">
+      <label><input type="checkbox" value="sports" name="hobbies"> Sports</label>
+      <label><input type="checkbox" value="movies" name="hobbies"> Movies</label>
+      <label><input type="checkbox" value="music" name="hobbies"> Music</label>
+    </div>
+
+    <input type="submit" value="Submit" id="btn">
+  </form>
 </div>
