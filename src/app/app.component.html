@@ -23,7 +23,7 @@
     <input type="email" id="email" placeholder="Your last email.." name="email" ngModel required email>
 
     <label for="country">Country</label>
-    <select id="country" name="country" ngModel>
+    <select id="country" name="country" [ngModel]="defaultCountry">
       <option value="australia">Australia</option>
       <option value="canada">Canada</option>
       <option value="usa">USA</option>
