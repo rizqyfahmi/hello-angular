@@ -1,51 +1,28 @@
-import { Component, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'hello-angular';
-  defaultCountry = 'india';
-  firstname: string = '';
-  lastname: string = '';
-  email: string = '';
-  country: string = '';
-  gender: string = '';
-  defaultGender: string = "Female";
-  genders: { id: string, value: string }[] = [
-    { id: '1', value: 'Male' },
-    { id: '2', value: 'Female' },
-    { id: '3', value: 'Other' },
-  ];
+export class AppComponent implements OnInit{
+  title = 'Reactive Form';
+  reactiveFormProps?: FormGroup;
 
-  @ViewChild('myForm') form?: NgForm;
+  ngOnInit(): void {
+    this.reactiveFormProps = new FormGroup({
+      firstname: new FormControl(null), // "null" is its default value
+      lastname: new FormControl(null), // "null" is its default value
+      email: new FormControl(null), // "null" is its default value
+      gender: new FormControl('male'), // "male" is its default value
+      country: new FormControl('usa'), // "usa" is its default value
+      hobbies: new FormControl(null), // "null" is its default value
+    });
+  }
 
   onSubmit() {
-    console.log(this.form);
-
-    this.firstname = this.form?.value.personalDetails.firstname;
-    this.lastname = this.form?.value.personalDetails.lastname;
-    this.email = this.form?.value.personalDetails.email;
-    this.gender = this.form?.value.gender;
-    this.country = this.form?.value.country;
-
-    this.form?.reset();
-
+    console.log(this.reactiveFormProps);
   }
 
-  setDefaultValues() {
-    /**
-     * - Using "patchValue" we can set value for specific property without need to set value of all properties 
-     */
-    this.form?.form.patchValue({
-      personalDetails: {
-        firstname: 'John',
-        lastname: 'Smith',
-        email: 'john.smith@email.com'
-      }
-    })
-  }
 }
