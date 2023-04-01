@@ -10,6 +10,9 @@
 
     <label for="email">Email</label>
     <input type="email" id="email" name="email" placeholder="Your last email.." name="email" formControlName="email">
+    <div>
+      <span class="error" *ngIf="!reactiveFormProps?.get('email')?.valid">The email you entered is not valid email</span>
+    </div>
 
     <label for="country">Country</label>
     <select id="country" name="country" formControlName="country">
