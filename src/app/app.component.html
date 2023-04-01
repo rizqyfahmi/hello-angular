@@ -10,7 +10,11 @@
     <!-- We will get "firstname" inside "controls" object in the console log -->
     <!-- To get its value, we can find it on "value" object in the console log -->
     <!-- To get validation status, we can find it on "valid" property either in form or field level -->
-    <input type="text" id="fname" placeholder="Your name.." name="firstname" ngModel required> 
+    <!-- #fname will receive firstname object -->
+    <input type="text" id="fname" placeholder="Your name.." name="firstname" ngModel required #fname="ngModel">
+    <div *ngIf="fname.invalid && fname.touched">
+      <small>First name is required field</small>
+    </div>
 
     <label for="lname">Last Name</label>
     <input type="text" id="lname" placeholder="Your last name.." name="lastname" ngModel required>
