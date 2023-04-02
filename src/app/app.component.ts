@@ -56,6 +56,13 @@ export class AppComponent implements OnInit{
       hobbies: '',
       skills: [''],
     });
+
+    // patchValue only requires a specific property which need to be changed
+    this.reactiveFormProps.patchValue({
+      personalDetails: {
+        firstname: 'hello',
+      },
+    });
   }
 
   onSubmit() {
