@@ -5,6 +5,10 @@
     <div formGroupName="personalDetails">
       <label for="fname">First Name</label>
       <input type="text" id="fname" placeholder="Your name.." name="firstname" formControlName="firstname">
+      <div>
+        <span class="error" *ngIf="reactiveFormProps?.get('personalDetails.firstname')?.errors?.['required']">First name is a required field</span>
+        <span class="error" *ngIf="reactiveFormProps?.get('personalDetails.firstname')?.errors?.['noSpaceAllowed']">First name can't contains a space</span>
+      </div>
       
       <label for="lname">Last Name</label>
       <input type="text" id="lname" placeholder="Your last name.." name="lastname" formControlName="lastname">
