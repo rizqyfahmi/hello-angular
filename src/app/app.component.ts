@@ -1,113 +1,80 @@
-import { Component, OnInit } from '@angular/core';
-import { AbstractControl, AsyncValidatorFn, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { map } from 'rxjs';
+import { Product } from './types/product.type';
+import { ProductService } from './services/product.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
-  title = 'Reactive Form';
-  reactiveFormProps?: FormGroup;
+export class AppComponent implements OnInit {
+  title = 'Angular Http Request';
+  products: Product[] = [];
+  editMode: boolean = false;
+  currentProductId: number = -1;
+  errorMessage: string = '';
+  @ViewChild('productsForm') form?: NgForm;
 
+  constructor(private productService: ProductService) {}
+  
   ngOnInit(): void {
-    this.reactiveFormProps = new FormGroup({
-      personalDetails: new FormGroup({
-        firstname: new FormControl(null, [Validators.required, this.noSpaceAllowed]), // "null" is its default value
-        lastname: new FormControl(null, Validators.required), // "null" is its default value
-        email: new FormControl(null, {
-          validators: [Validators.required, Validators.email],
-          asyncValidators: [this.emailNotAllowed()],
-          updateOn: 'blur'
-        }), // "null" is its default value
-      }),
-      gender: new FormControl('male'), // "male" is its default value
-      country: new FormControl('usa'), // "usa" is its default value
-      hobbies: new FormControl(null), // "null" is its default value
-      /** 
-       * - FormArray is the other way to manage a collection of form controls using array as its parameter
-       * - It has same with FormGroup, buat each control is represented as key-value pair
-       * */ 
-      skills: new FormArray([
-        new FormControl(null, Validators.required),
-      ]),
-    });
-
-    // ValueChanges event is called whenever the value of FormControl, FormGroup, or FormArray changes.
-    this.reactiveFormProps.get('personalDetails.firstname')?.valueChanges.subscribe((value) => {
-      console.log('value: ', value);
-    });
-
-    // StatusChanges event is called whenever angular calculates the validation status of FormControl, FormGroup, or FormArray.
-    this.reactiveFormProps.get('personalDetails.email')?.statusChanges.subscribe((status) => {
-      console.log('status: ', status);
-    });
-
-    // SetValue requires all properties to be included, even though we are not going to change those properties
-    this.reactiveFormProps.setValue({
-      personalDetails: {
-        firstname: '',
-        lastname: '',
-        email: 'hello@email.com'
-      },
-      gender: 'male',
-      country: 'usa',
-      hobbies: '',
-      skills: [''],
-    });
-
-    // patchValue only requires a specific property which need to be changed
-    this.reactiveFormProps.patchValue({
-      personalDetails: {
-        firstname: 'hello',
-      },
-    });
+    this.fetchProducts();
   }
 
-  onSubmit() {
-    console.log(this.reactiveFormProps);
-    this.reactiveFormProps?.reset({
-      personalDetails: {
-        firstname: '',
-        lastname: '',
-        email: 'hello@email.com'
-      },
-      gender: 'male',
-      country: 'usa',
-      hobbies: '',
-      skills: [''],
-    });
-  }
-
-  addSkills() {
-    const skills = <FormArray>this.reactiveFormProps?.get('skills');
-    skills.push(new FormControl(null, Validators.required))
-  }
-
-  // Custom validator
-  noSpaceAllowed(control: FormControl) {
-    if (control.value != null && control.value.indexOf(' ') != -1) {
-      return { noSpaceAllowed: true }
+  onProductCreate(product: { name: string, description: string, price: number }) {
+    if (!this.editMode) {
+      this.productService.createProduct(product).subscribe((response) => {
+        console.log('create: ', response);
+        this.fetchProducts();
+        this.editMode = false;
+        this.form?.reset();
+      });
+      return;
     }
 
-    return null;
+    this.productService.updateProduct(this.currentProductId, {...product, id: this.currentProductId}).subscribe((response) => {
+      console.log('update: ', response);
+      this.fetchProducts();
+      this.editMode = false;
+      this.form?.reset();
+    });
   }
 
-  emailNotAllowed(): AsyncValidatorFn {
-    return (control: AbstractControl): Promise<any> | Observable<any> => {
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          if (control.value !== 'hello@email.com') {
-            return resolve({ emailNotAllowed: true })
-          }
-
-          resolve(null);
-        }, 5000);
-      })
-    }
+  onDeleteProduct(id: number) {
+    this.productService.removeProduct(id).subscribe(() => {
+      console.log('delete: ');
+      this.products = this.products.filter((product) => product.id != id);
+    });
   }
 
-  get formSkills() { return <FormArray>this.reactiveFormProps?.get('skills'); }
+  onEditProduct(id: number) {
+    const product: Product | undefined = this.products.find((product) => product.id == id);
+    console.log('edit: ', product);
 
+    if (!product) return console.log('Product is null!');
+    
+    this.form?.setValue({
+      name: product.name,
+      description: product.description,
+      price: product.price
+    });
+
+    this.editMode = true;
+    this.currentProductId = id;
+  }
+
+  private fetchProducts() {    
+    this.productService.fetchProducts().subscribe({
+      next: (products) => {
+        console.log('products: ', products);
+        this.products = products;
+      },
+      error: (errorMessage) => {
+        this.errorMessage = errorMessage;
+      }
+    });
+  }
 }
