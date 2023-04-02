@@ -42,7 +42,20 @@ export class AppComponent implements OnInit{
     // StatusChanges event is called whenever angular calculates the validation status of FormControl, FormGroup, or FormArray.
     this.reactiveFormProps.get('personalDetails.email')?.statusChanges.subscribe((status) => {
       console.log('status: ', status);
-    })
+    });
+
+    // SetValue requires all properties to be included, even though we are not going to change those properties
+    this.reactiveFormProps.setValue({
+      personalDetails: {
+        firstname: '',
+        lastname: '',
+        email: 'hello@email.com'
+      },
+      gender: '',
+      country: 'usa',
+      hobbies: '',
+      skills: [''],
+    });
   }
 
   onSubmit() {
