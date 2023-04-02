@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs';
 import { Product } from './types/product.type';
+import { ProductService } from './services/product.service';
 
 @Component({
   selector: 'app-root',
@@ -12,36 +13,27 @@ export class AppComponent implements OnInit {
   title = 'Angular Http Request';
   products: Product[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private productService: ProductService) {}
   
   ngOnInit(): void {
     this.fetchProducts();
   }
 
   onProductCreate(product: { name: string, description: string, price: number }) {
-    console.log('product: ', product);
-    const headers = new HttpHeaders({
-      'Content-Type': ' application/json'
-    });
-    this.http.post('http://localhost:4000/products', product, { headers: headers }).subscribe((response) => {
+    this.productService.createProduct(product).subscribe((response) => {
       console.log('response: ', response);
       this.fetchProducts();
     });
   }
 
   onDeleteProduct(id: number) {
-    this.http.delete('http://localhost:4000/products/' + id).subscribe(() => {
+    this.productService.removeProduct(id).subscribe(() => {
       this.products = this.products.filter((product) => product.id != id);
     });
   }
 
-  private fetchProducts() {
-    this.http.get('http://localhost:4000/products')
-    .pipe(map((response) => {
-      console.log('response: ', response);
-      return <Product[]>response; // Cast response object into array of product
-    }))
-    .subscribe((products) => {
+  private fetchProducts() {    
+    this.productService.fetchProducts().subscribe((products) => {
       console.log('products: ', products);
       this.products = products;
     });
