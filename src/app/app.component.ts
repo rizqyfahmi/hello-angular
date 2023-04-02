@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { map } from 'rxjs';
 import { Product } from './types/product.type';
 import { ProductService } from './services/product.service';
@@ -15,6 +15,7 @@ export class AppComponent implements OnInit {
   products: Product[] = [];
   editMode: boolean = false;
   currentProductId: number = -1;
+  errorMessage: string = '';
   @ViewChild('productsForm') form?: NgForm;
 
   constructor(private productService: ProductService) {}
@@ -66,9 +67,14 @@ export class AppComponent implements OnInit {
   }
 
   private fetchProducts() {    
-    this.productService.fetchProducts().subscribe((products) => {
-      console.log('products: ', products);
-      this.products = products;
+    this.productService.fetchProducts().subscribe({
+      next: (products) => {
+        console.log('products: ', products);
+        this.products = products;
+      },
+      error: (errorMessage) => {
+        this.errorMessage = errorMessage;
+      }
     });
   }
 }

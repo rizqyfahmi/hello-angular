@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Product } from '../types/product.type';
-import { Observable, map } from 'rxjs';
+import { Observable, catchError, map, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -21,9 +21,12 @@ export class ProductService {
   }
 
   fetchProducts() {
-    return this.http.get('http://localhost:4000/products').pipe(map((response) => {
+    return this.http.get('http://localhost:4000/productsa').pipe(map((response) => {
       console.log('response: ', response);
       return <Product[]>response; // Cast response object into array of product
+    }), catchError((error) => {
+      console.log('error: ', error);
+      return throwError(() => error.message);
     }))
   }
 
