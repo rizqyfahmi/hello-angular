@@ -13,7 +13,7 @@
           <input type="text" name="name" ngModel>
 
           <label>Procuct Description</label>
-          <input type="text" name="descripton" ngModel>
+          <input type="text" name="description" ngModel>
 
           <label>Procuct Price</label>
           <input type="text" name="price" ngModel>
@@ -33,11 +33,11 @@
             <th></th>
             <th></th>
           </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>$</td>
+          <tr *ngFor="let product of products; index as i">
+            <td>{{ i + 1 }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.description }}</td>
+            <td>${{ product.price }}</td>
             <td><button class="btn-delete">Delete</button></td>
             <td><button class="btn-edit">Edit</button></td>
           </tr>
