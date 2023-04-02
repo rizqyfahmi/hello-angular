@@ -33,6 +33,11 @@ export class AppComponent implements OnInit{
         new FormControl(null, Validators.required),
       ]),
     });
+
+    // ValueChanges event is called whenever the value of FormControl, FormGroup, or FormArray changes.
+    this.reactiveFormProps.get('personalDetails.firstname')?.valueChanges.subscribe((value) => {
+      console.log('value: ', value)
+    })
   }
 
   onSubmit() {
