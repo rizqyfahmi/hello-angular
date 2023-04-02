@@ -36,7 +36,12 @@ export class AppComponent implements OnInit{
 
     // ValueChanges event is called whenever the value of FormControl, FormGroup, or FormArray changes.
     this.reactiveFormProps.get('personalDetails.firstname')?.valueChanges.subscribe((value) => {
-      console.log('value: ', value)
+      console.log('value: ', value);
+    });
+
+    // StatusChanges event is called whenever angular calculates the validation status of FormControl, FormGroup, or FormArray.
+    this.reactiveFormProps.get('personalDetails.email')?.statusChanges.subscribe((status) => {
+      console.log('status: ', status);
     })
   }
 
