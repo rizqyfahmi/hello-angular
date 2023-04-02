@@ -23,6 +23,7 @@ import { IfDirective } from './directives/if/if.directive';
     ClassDirective,
     StyleDirective,
     IfDirective,
+    DemoComponent
   ],
   imports: [
     BrowserModule,
