@@ -1,58 +1,53 @@
-<div class="form">
-  <h2 id="registration">Registration Form</h2>
-  <form [formGroup]="reactiveFormProps!" (ngSubmit)="onSubmit()">
+<div class="main-area">
+  <div class="content-area">
+    <div class="header">
+      <h1>Manage Products</h1>
+      <hr>
+    </div>
+    <div class="container">
+      <!--Add product form-->
+      <div class="form-area">
+        <h3>Create Product</h3>
+        <form #productsForm="ngForm" (ngSubmit)="onProductCreate(productsForm.value)">
+          <label>Procuct Name</label>
+          <input type="text" name="name" ngModel>
 
-    <div formGroupName="personalDetails">
-      <label for="fname">First Name</label>
-      <input type="text" id="fname" placeholder="Your name.." name="firstname" formControlName="firstname">
-      <div>
-        <span class="error" *ngIf="reactiveFormProps?.get('personalDetails.firstname')?.errors?.['required']">First name is a required field</span>
-        <span class="error" *ngIf="reactiveFormProps?.get('personalDetails.firstname')?.errors?.['noSpaceAllowed']">First name can't contains a space</span>
+          <label>Procuct Description</label>
+          <input type="text" name="descripton" ngModel>
+
+          <label>Procuct Price</label>
+          <input type="text" name="price" ngModel>
+
+          <input type="submit" value="Add Product">
+        </form>
       </div>
-      
-      <label for="lname">Last Name</label>
-      <input type="text" id="lname" placeholder="Your last name.." name="lastname" formControlName="lastname">
-      
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" placeholder="Your last email.." name="email" formControlName="email">
-      <div>
-        <span class="error" *ngIf="reactiveFormProps?.get('personalDetails.email')?.errors?.['required']">Email is a required field</span>
-        <span class="error" *ngIf="reactiveFormProps?.get('personalDetails.email')?.errors?.['emailNotAllowed']">The email you entered is not a valid email</span>
+      <!--Display product area-->
+      <div class="product-display-area">
+        <h3>All Products</h3>
+        <table id="products">
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th></th>
+            <th></th>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>$</td>
+            <td><button class="btn-delete">Delete</button></td>
+            <td><button class="btn-edit">Edit</button></td>
+          </tr>
+        </table>
+        <hr>
+        <div class="action-btn-container">
+          <button class="btn-fetch">Fetch Product</button>
+          <button class="btn-clear">Clear Product</button>
+        </div>
       </div>
     </div>
-
-    <label for="country">Country</label>
-    <select id="country" name="country" formControlName="country">
-      <option value="australia">Australia</option>
-      <option value="canada">Canada</option>
-      <option value="usa">USA</option>
-      <option value="india">India</option>
-      <option value="uk">UK</option>
-    </select>
-
-    <label for="gender">Gender:</label>
-    <input type="radio" id="male" value="male" formControlName="gender">
-    <label for="male">Male</label>
-    <input type="radio" id="female" value="female" formControlName="gender">
-    <label for="female">Female</label>
-    <input type="radio" id="other" value="other"  formControlName="gender">
-    <label for="other">Other</label>
-    <br><br>
-
-    <label>Hobbies <i>(Optional)</i></label>
-    <div class="form-inline">
-      <label><input type="checkbox" value="sports" name="hobbies" formControlName="hobbies"> Sports</label>
-      <label><input type="checkbox" value="movies" name="hobbies" formControlName="hobbies"> Movies</label>
-      <label><input type="checkbox" value="music" name="hobbies" formControlName="hobbies"> Music</label>
-    </div>
-
-    <div formArrayName="skills">
-      <!-- To get access of the form controls from FormArray, we need to call it from "controls" property -->
-      <ng-container *ngFor="let skill of formSkills['controls']; let i = index">
-        <input type="text" placeholder="add skill..." formControlName="{{i}}">
-      </ng-container>
-      <button (click)="addSkills()">+ Add Skills</button>
-    </div>
-    <input type="submit" value="Submit" id="btn">
-  </form>
+  </div>
 </div>
