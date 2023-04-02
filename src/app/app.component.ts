@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { UserService } from './services/user.service';
 
 type video = {
   title: string,
@@ -14,10 +15,5 @@ type video = {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title: string = 'hello-angular';
-  inputText: string = "";
-
-  onSubmit(inputElement: HTMLInputElement) {
-    this.inputText = inputElement.value;
-  }
+  title = 'User Service';
 }
