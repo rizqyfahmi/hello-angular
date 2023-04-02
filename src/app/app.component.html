@@ -18,7 +18,7 @@
           <label>Procuct Price</label>
           <input type="text" name="price" ngModel>
 
-          <input type="submit" value="Add Product">
+          <input type="submit" value="{{ editMode ? 'Update Product' : 'Add Product' }}">
         </form>
       </div>
       <!--Display product area-->
@@ -42,7 +42,7 @@
             <td>{{ product.description }}</td>
             <td>${{ product.price }}</td>
             <td><button class="btn-delete" (click)="onDeleteProduct(product.id)">Delete</button></td>
-            <td><button class="btn-edit">Edit</button></td>
+            <td><button class="btn-edit" (click)="onEditProduct(product.id)">Edit</button></td>
           </tr>
         </table>
         <hr>
