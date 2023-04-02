@@ -21,6 +21,7 @@ import { ErrorComponent } from './error/error.component';
 import { CourseComponent } from './courses/course/course.component';
 import { AppRoutingModule } from './app-routing.module';
 import { PercentagePipe } from './pipes/percentage.pipe';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { PercentagePipe } from './pipes/percentage.pipe';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   bootstrap: [AppComponent]
 })
