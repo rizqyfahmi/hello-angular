@@ -67,6 +67,7 @@ export class AppComponent implements OnInit{
 
   onSubmit() {
     console.log(this.reactiveFormProps);
+    this.reactiveFormProps?.reset();
   }
 
   addSkills() {
