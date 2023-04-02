@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Product } from '../types/product.type';
 import { Observable, catchError, map, throwError } from 'rxjs';
@@ -21,7 +21,13 @@ export class ProductService {
   }
 
   fetchProducts() {
-    return this.http.get('http://localhost:4000/productsa').pipe(map((response) => {
+    const headers = new HttpHeaders()
+    .set('Content-Type', 'application/json')
+    .set('Access-Control-Allow-Origin', '*');
+
+    const params = new HttpParams().set('print', 'pretty');
+
+    return this.http.get('http://localhost:4000/products', { headers: headers, params: params }).pipe(map((response) => {
       console.log('response: ', response);
       return <Product[]>response; // Cast response object into array of product
     }), catchError((error) => {
