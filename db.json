@@ -2,31 +2,31 @@
   "products": [
     {
       "id": 1,
-      "title": "Product 1",
+      "name": "Product 1",
       "price": 700,
       "description": "Description 1"
     },
     {
       "id": 2,
-      "title": "Product 2",
+      "name": "Product 2",
       "price": 1050,
       "description": "Description 2"
     },
     {
       "id": 3,
-      "title": "Product 3",
+      "name": "Product 3",
       "price": 2600,
       "description": "Description 3"
     },
     {
       "name": "Hello",
-      "descripton": "Product",
+      "description": "Product",
       "price": "100000",
       "id": 4
     },
     {
       "name": "hello",
-      "descripton": "world",
+      "description": "world",
       "price": "10000",
       "id": 5
     }
