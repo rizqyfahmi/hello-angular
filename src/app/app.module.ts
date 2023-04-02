@@ -20,6 +20,7 @@ import { HomeComponent } from './home/home.component';
 import { ErrorComponent } from './error/error.component';
 import { CourseComponent } from './courses/course/course.component';
 import { AppRoutingModule } from './app-routing.module';
+import { PercentagePipe } from './pipes/percentage.pipe';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { AppRoutingModule } from './app-routing.module';
     CoursesComponent,
     HomeComponent,
     ErrorComponent,
-    CourseComponent
+    CourseComponent,
+    PercentagePipe,
   ],
   imports: [
     BrowserModule,
