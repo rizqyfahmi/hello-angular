@@ -13,7 +13,7 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
     this.reactiveFormProps = new FormGroup({
       personalDetails: new FormGroup({
-        firstname: new FormControl(null, Validators.required), // "null" is its default value
+        firstname: new FormControl(null, [Validators.required, this.noSpaceAllowed]), // "null" is its default value
         lastname: new FormControl(null, Validators.required), // "null" is its default value
         email: new FormControl(null, [Validators.required, Validators.email]), // "null" is its default value
       }),
@@ -37,6 +37,15 @@ export class AppComponent implements OnInit{
   addSkills() {
     const skills = <FormArray>this.reactiveFormProps?.get('skills');
     skills.push(new FormControl(null, Validators.required))
+  }
+
+  // Custom validator
+  noSpaceAllowed(control: FormControl) {
+    if (control.value != null && control.value.indexOf(' ') != -1) {
+      return { noSpaceAllowed: true }
+    }
+
+    return null;
   }
 
   get formSkills() { return <FormArray>this.reactiveFormProps?.get('skills'); }
