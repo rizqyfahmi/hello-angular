@@ -1,0 +1,46 @@
+.d-grid {
+    display: grid
+}
+.gap-12px {
+    gap: 12px;
+}
+.grid-col-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr))
+}
+.card {
+    border-radius: 8px;
+    overflow: hidden;
+    opacity: 0.5
+}
+.card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px
+}
+.thumbnail {
+    flex: 1;
+}
+.p-16px {
+    padding: 16px
+}
+.card-highlight {
+    opacity: 1
+}
+.button {
+    margin: 16px;
+    color: #ffffff;
+    padding: 8px 16px;
+    background-color: #F07126;
+    border: 0px;
+    border-radius: 8px;
+}
+.container-info {
+    background-color: #4E6E81;
+    padding: 8px 16px;
+    margin: 0px 16px;
+    color: #ffffff
+}
+.m-h-16px {
+    margin-left: 16px;
+    mergin-right: 16px;
+}
