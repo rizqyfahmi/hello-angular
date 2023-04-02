@@ -51,7 +51,7 @@ export class AppComponent implements OnInit{
         lastname: '',
         email: 'hello@email.com'
       },
-      gender: '',
+      gender: 'male',
       country: 'usa',
       hobbies: '',
       skills: [''],
@@ -67,7 +67,17 @@ export class AppComponent implements OnInit{
 
   onSubmit() {
     console.log(this.reactiveFormProps);
-    this.reactiveFormProps?.reset();
+    this.reactiveFormProps?.reset({
+      personalDetails: {
+        firstname: '',
+        lastname: '',
+        email: 'hello@email.com'
+      },
+      gender: 'male',
+      country: 'usa',
+      hobbies: '',
+      skills: [''],
+    });
   }
 
   addSkills() {
