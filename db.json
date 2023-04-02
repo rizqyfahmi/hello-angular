@@ -11,6 +11,12 @@
       "description": "Description Two",
       "price": "1200",
       "id": 2
+    },
+    {
+      "name": "Hello Three",
+      "description": "Hello Three",
+      "price": "1500",
+      "id": 3
     }
   ]
 }

@@ -1,8 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { map } from 'rxjs';
 import { Product } from './types/product.type';
 import { ProductService } from './services/product.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,9 @@ import { ProductService } from './services/product.service';
 export class AppComponent implements OnInit {
   title = 'Angular Http Request';
   products: Product[] = [];
+  editMode: boolean = false;
+  currentProductId: number = -1;
+  @ViewChild('productsForm') form?: NgForm;
 
   constructor(private productService: ProductService) {}
   
@@ -20,16 +24,45 @@ export class AppComponent implements OnInit {
   }
 
   onProductCreate(product: { name: string, description: string, price: number }) {
-    this.productService.createProduct(product).subscribe((response) => {
-      console.log('response: ', response);
+    if (!this.editMode) {
+      this.productService.createProduct(product).subscribe((response) => {
+        console.log('create: ', response);
+        this.fetchProducts();
+        this.editMode = false;
+        this.form?.reset();
+      });
+      return;
+    }
+
+    this.productService.updateProduct(this.currentProductId, {...product, id: this.currentProductId}).subscribe((response) => {
+      console.log('update: ', response);
       this.fetchProducts();
+      this.editMode = false;
+      this.form?.reset();
     });
   }
 
   onDeleteProduct(id: number) {
     this.productService.removeProduct(id).subscribe(() => {
+      console.log('delete: ');
       this.products = this.products.filter((product) => product.id != id);
     });
+  }
+
+  onEditProduct(id: number) {
+    const product: Product | undefined = this.products.find((product) => product.id == id);
+    console.log('edit: ', product);
+
+    if (!product) return console.log('Product is null!');
+    
+    this.form?.setValue({
+      name: product.name,
+      description: product.description,
+      price: product.price
+    });
+
+    this.editMode = true;
+    this.currentProductId = id;
   }
 
   private fetchProducts() {    
