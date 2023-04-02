@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DemoComponent } from './demo/demo.component';
 import { SetBackgroundDirective } from './directives/set-background/set-background.directive';
@@ -14,6 +13,13 @@ import { StyleDirective } from './directives/style/style.directive';
 import { IfDirective } from './directives/if/if.directive';
 import { AllUsersComponent } from './all-users/all-users.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
+import { CoursesComponent } from './courses/courses.component';
+import { HomeComponent } from './home/home.component';
+import { ErrorComponent } from './error/error.component';
+import { CourseComponent } from './courses/course/course.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -29,6 +35,12 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
     DemoComponent,
     AllUsersComponent,
     UserDetailComponent,
+    AboutComponent,
+    ContactComponent,
+    CoursesComponent,
+    HomeComponent,
+    ErrorComponent,
+    CourseComponent
   ],
   imports: [
     BrowserModule,

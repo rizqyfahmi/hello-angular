@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { interval, Observable, Subscription } from 'rxjs';
+import { ActivatedRoute, Event, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -7,29 +8,37 @@ import { interval, Observable, Subscription } from 'rxjs';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  title = 'Observable';
+  title = 'hello-angular';
+  displayLoadingIndicator: boolean = false;
 
-  /**
-   * - Create an observable that emits sequential numbers every specified time interval
-   * - The observable created by this interval function will keep on emitting the data indefinitely unless we unsubscribe that observable
-   * */ 
-  myObservable = interval(1000)
-  subscribedObservable?: Subscription;
-
+  constructor(private activatedRoute: ActivatedRoute, private authService: AuthService, private route: Router) {}
+  
   ngOnInit(): void {
-    this.subscribe();
-  }
-
-  // It will create a new observable every time we call this method, even if we already have an active observable.
-  subscribe() {
-    if (!(this.subscribedObservable?.closed ?? true)) return;
-    this.subscribedObservable = this.myObservable.subscribe((value) => {
-      console.log(value);
+    this.activatedRoute.fragment.subscribe((value) => {
+      document.getElementById(value!)?.scrollIntoView({ behavior: 'smooth' })
     });
+
+    this.route.events.subscribe((routerEvent: Event) => {
+      // Since we create a "resolve route guard", then we need to show loading bar when visit a page
+      if (routerEvent instanceof NavigationStart) {
+        this.displayLoadingIndicator = true;
+      }
+      
+      if (routerEvent instanceof NavigationEnd || routerEvent instanceof NavigationCancel || routerEvent instanceof NavigationError) {
+        this.displayLoadingIndicator = false;
+      }
+    })
   }
 
-  // It will stop subscription. (Only the latest observable, so that we need to prevent creating multiple observable)
-  unsubscribe() {
-    this.subscribedObservable?.unsubscribe();
+  login(): void {
+    this.authService.login();
+  }
+
+  logout(): void {
+    this.authService.logout();
+  }
+
+  isAuthenticated(): boolean {
+    return this.authService.isAuthenticated();
   }
 }

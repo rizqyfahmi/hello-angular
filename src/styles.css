@@ -14,3 +14,7 @@ button {
     text-align: center;
     background-color: coral;
 }
+
+.active{
+    background-color: #777;
+}
