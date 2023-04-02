@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -20,11 +20,25 @@ export class AppComponent implements OnInit{
       gender: new FormControl('male'), // "male" is its default value
       country: new FormControl('usa'), // "usa" is its default value
       hobbies: new FormControl(null), // "null" is its default value
+      /** 
+       * - FormArray is the other way to manage a collection of form controls using array as its parameter
+       * - It has same with FormGroup, buat each control is represented as key-value pair
+       * */ 
+      skills: new FormArray([
+        new FormControl(null, Validators.required),
+      ]),
     });
   }
 
   onSubmit() {
     console.log(this.reactiveFormProps);
   }
+
+  addSkills() {
+    const skills = <FormArray>this.reactiveFormProps?.get('skills');
+    skills.push(new FormControl(null, Validators.required))
+  }
+
+  get formSkills() { return <FormArray>this.reactiveFormProps?.get('skills'); }
 
 }
