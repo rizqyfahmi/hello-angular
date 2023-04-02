@@ -25,6 +25,13 @@ export class AppComponent implements OnInit {
     });
     this.http.post('http://localhost:4000/products', product, { headers: headers }).subscribe((response) => {
       console.log('response: ', response);
+      this.fetchProducts();
+    });
+  }
+
+  onDeleteProduct(id: number) {
+    this.http.delete('http://localhost:4000/products/' + id).subscribe(() => {
+      this.products = this.products.filter((product) => product.id != id);
     });
   }
 
