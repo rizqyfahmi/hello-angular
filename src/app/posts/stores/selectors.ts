@@ -8,3 +8,13 @@ export const isLoadingSelector = createSelector(
     postState,
     (state) => state.isLoading
 );
+
+export const postSelector = createSelector(
+    postState,
+    (state) => state.posts
+);
+
+export const errorSelector = createSelector(
+    postState,
+    (state) => state.error
+);
