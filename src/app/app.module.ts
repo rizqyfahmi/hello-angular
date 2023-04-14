@@ -24,6 +24,7 @@ import { PercentagePipe } from './pipes/percentage.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { PostsModule } from './posts/posts.module';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { PostsModule } from './posts/posts.module';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    PostsModule
+    PostsModule,
+    StoreModule.forRoot({}) // It is filled by empty object because we want to define all our reducers and related stuff inside that module
   ],
   bootstrap: [AppComponent]
 })
