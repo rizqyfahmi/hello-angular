@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { getPosts } from '../../stores/actions';
 import { Observable } from 'rxjs';
-import { isLoadingSelector, postState } from '../../stores/selectors';
+import { errorSelector, isLoadingSelector, postSelector, postState } from '../../stores/selectors';
 import { AppStateInterface } from 'src/app/types/appState.interface';
 import { PostStateInterface } from '../../types/postState.interface';
+import { PostInterface } from '../../types/post.interface';
 
 @Component({
   standalone: false,
@@ -14,18 +15,17 @@ import { PostStateInterface } from '../../types/postState.interface';
 })
 export class PostsComponent implements OnInit {
   
-  isLoading?: boolean;
-  state?: PostStateInterface
+  isLoading$: Observable<boolean>;
+  error$: Observable<string | null>;
+  posts$: Observable<PostInterface[]>;
 
   constructor(private store: Store<AppStateInterface>) {
     // select "isLoadingSelector" from our state in selectors.ts
-    this.store.pipe(select(isLoadingSelector)).subscribe((isLoading) => {
-      this.isLoading = isLoading;
-    });
-    // select "postState" from our state in selectors.ts
-    this.store.pipe(select(postState)).subscribe((state) => {
-      this.state = state
-    });
+    this.isLoading$ = this.store.pipe(select(isLoadingSelector));
+    // select "postSelector" from our state in selectors.ts
+    this.posts$ = this.store.pipe(select(postSelector));
+    // select "errorSelector" from our state in selectors.ts
+    this.error$ = this.store.pipe(select(errorSelector));
   }
 
   ngOnInit(): void {
