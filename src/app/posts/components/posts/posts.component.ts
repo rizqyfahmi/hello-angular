@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { getPosts } from '../../stores/actions';
 
 @Component({
   standalone: false,
@@ -6,6 +8,12 @@ import { Component } from '@angular/core';
   templateUrl: './posts.component.html',
   styleUrls: ['./posts.component.css']
 })
-export class PostsComponent {
+export class PostsComponent implements OnInit {
+  
+  constructor(private store: Store) {}
+
+  ngOnInit(): void {
+    this.store.dispatch(getPosts());
+  }
 
 }
