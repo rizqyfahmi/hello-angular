@@ -23,6 +23,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { PercentagePipe } from './pipes/percentage.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { PostsModule } from './posts/posts.module';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    PostsModule
   ],
   bootstrap: [AppComponent]
 })
