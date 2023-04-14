@@ -10,7 +10,7 @@ import { reducers } from './stores/reducers';
   ],
   imports: [
     CommonModule,
-    StoreModule.forFeature("posts", reducers)
+    StoreModule.forFeature("posts", reducers) // "posts" will become a part of app state
   ],
   exports: [
     PostsComponent
