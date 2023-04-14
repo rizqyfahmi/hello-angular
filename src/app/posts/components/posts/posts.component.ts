@@ -14,12 +14,14 @@ import { PostStateInterface } from '../../types/postState.interface';
 })
 export class PostsComponent implements OnInit {
   
-  isLoading?: Observable<boolean>;
+  isLoading?: boolean;
   state?: PostStateInterface
 
   constructor(private store: Store<AppStateInterface>) {
     // select "isLoadingSelector" from our state in selectors.ts
-    this.isLoading = this.store.pipe(select(isLoadingSelector));
+    this.store.pipe(select(isLoadingSelector)).subscribe((isLoading) => {
+      this.isLoading = isLoading;
+    });
     // select "postState" from our state in selectors.ts
     this.store.pipe(select(postState)).subscribe((state) => {
       this.state = state
