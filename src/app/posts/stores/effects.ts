@@ -7,6 +7,7 @@ import { PostsService } from "../services/posts.service";
 
 @Injectable()
 export class PostsEffects {
+    // the name (getPosts$) is not important, this effect will be called when we dispatch "getPosts" action 
     getPosts$ = createEffect(() =>
         this.actions$.pipe(
             ofType(getPosts),
