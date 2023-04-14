@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, delay, of } from 'rxjs';
-import { PostInterface } from '../types/posts.interface';
+import { PostInterface } from '../types/post.interface';
 
 @Injectable({
   providedIn: 'root'
