@@ -1,4 +1,9 @@
-<p>posts works!</p>
+<h1>Posts Page</h1>
 
-<div *ngIf="isLoading">{{ isLoading }}</div>
-<div *ngIf="state">{{ state.isLoading }}</div>
+<div *ngIf="isLoading$ | async">Loading...</div>
+
+<div *ngIf="error$ | async as error">{{ error }}</div>
+
+<div *ngFor="let post of posts$ | async">
+    {{ post.title }}
+</div>
